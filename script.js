@@ -1,15 +1,21 @@
-// Function 1: Adds 5 to a number
-const addFive = (x) => x + 5;
 
-// Function 2: Multiplies a number by 2
-const multiplyByTwo = (x) => x * 2;
+function add5(x) {
+    return x + 5;
+}
 
-// Composition function: Combines two functions
-const compose = (f, g) => (x) => f(g(x));
+function multiplyBy3(x) {
+    return x * 3;
+}
 
-// Composing the functions: First multiply, then add
-const multiplyThenAdd = compose(addFive, multiplyByTwo);
 
-// Testing the composed function
-const result = multiplyThenAdd(10); // First multiplyByTwo(10) -> 20, then addFive(20) -> 25
-console.log(result); // Output: 25
+function compose(func1, func2) {
+    return function(value) {
+        return func2(func1(value)); 
+    };
+}
+
+
+const addAndMultiply = compose(add5, multiplyBy3);
+
+
+console.log(addAndMultiply(10)); 
